@@ -1,0 +1,26 @@
+Installing Samba server.
+
+1. Install samba package
+  sudo apt update	
+  sudo apt install samba
+
+2. Make a directory for Sharing (here: sambashare)
+  mkdir <path>/sambashare/
+
+3. Editing the config file
+  sudo nano /etc/samba/smb.conf
+  
+4. Insert the following at the end of the config file and then hit Ctrl + O and Ctrl + X
+    comment = Samba on Ubuntu
+    path = /home/username/sambashare
+    read only = no
+    browsable = yes
+    
+5. Restarting the samba service
+  sudo service smbd restart
+ 
+6. Allowing ufw to allow requests
+  sudo ufw allow samba
+  
+7. Now we'll set up a samba password for the user
+  sudo smbpasswd -a username
